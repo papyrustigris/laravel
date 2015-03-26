@@ -12,7 +12,7 @@
 
 			<article>
 				
-				<a href="/articles/{{ $article->id }}">{{ $article->title }} </a>
+				<a href="/articles/{{ $article->id }}"> {{ $article->title }} </a>
 
 				<div class="body">
 
