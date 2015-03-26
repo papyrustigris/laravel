@@ -2,16 +2,17 @@
 
 use App\Article;
 use App\Http\Requests;
+use App\Http\Requests\CreateArticleRequest;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
-use Request;
 
 class ArticlesController extends Controller {
 
 	public function index() 
 	{
 		
-		$articles = Article::latest()->get();
+		$articles = Article::latest('published_at')->published()->get();
+		
 		return view('articles.index')->with('articles', $articles);
 		
 	}
@@ -20,6 +21,8 @@ class ArticlesController extends Controller {
 	{
 
 		$article = Article::findOrFail($id);
+
+		// dd($article->published_at);
 	
 		return view('articles.show')->with('article', $article);
 		
@@ -32,13 +35,10 @@ class ArticlesController extends Controller {
 
 	}
 
-	public function store()
+	public function store(CreateArticleRequest $request)
 	{
 
-		$input= Request::all();
-		$input['published_at'] = Carbon::now();
-
-		Article::create($input);
+		Article::create($request->all());
 
 		return redirect('articles');
 

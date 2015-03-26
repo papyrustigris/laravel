@@ -2,12 +2,15 @@
 
 @section('content')
 
-	<h1> {{  $article->title  }} </h1>
+	<div class="container">
 
-	<article>
-		
-		{{  $article->body  }}
+		<h1> {{  $article->title  }} </h1>
 
-	</article>
+		<article>
+			
+			{{  $article->body  }}
 
+		</article>
+	</div>
+	
 @stop
